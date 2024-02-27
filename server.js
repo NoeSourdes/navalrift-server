@@ -31,7 +31,7 @@ io.on("connection", (socket) => {
   });
 });
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || "https://navalrift-server.onrender.com";
 httpServer.listen(PORT, () => {
   console.log(`Le serveur est en cours d'écoute sur le port ${PORT}`);
 });
