@@ -6,7 +6,7 @@ const httpServer = http.createServer();
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "https://navalrift.vercel.app",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true,
