@@ -6,7 +6,7 @@ const httpServer = http.createServer();
 
 const io = new Server(httpServer, {
   cors: {
-    origin: ["http://localhost:3000", "https://navalrift.netlify.app"],
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true,
@@ -24,6 +24,8 @@ io.on("connection", (socket) => {
     console.log("message : ", data);
     socket.to(data.id_group).emit("receive_msg", data);
     console.log("message envoyé au groupe : ", data.id_group);
+
+    // Émettre une confirmation vers le client
     callback({ id_group: data.id_group });
   });
 
@@ -32,7 +34,7 @@ io.on("connection", (socket) => {
   });
 });
 
-const PORT = process.env.PORT || "https://navalrift-server.onrender.com";
+const PORT = process.env.PORT || 3001;
 httpServer.listen(PORT, () => {
   console.log(`Le serveur est en cours d'écoute sur le port ${PORT}`);
 });
