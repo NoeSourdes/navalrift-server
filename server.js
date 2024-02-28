@@ -14,11 +14,8 @@ const io = new Server(httpServer, {
 });
 
 io.on("connection", (socket) => {
-  socket.on("join_groups", (groups) => {
-    groups.forEach((group) => {
-      socket.join(group);
-      console.log(`L'utilisateur ${socket.id} a rejoint le groupe : ${group}`);
-    });
+  socket.on("join_conversation", (id_group) => {
+    socket.join(id_group);
   });
 
   socket.on("send_msg", (data) => {
