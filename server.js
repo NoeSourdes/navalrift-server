@@ -24,7 +24,7 @@ io.on("connection", (socket) => {
     socket.to(data.id_group).emit("notification", {
       message:
         "Nouveau message reçu de " +
-        data.user +
+        data.name_user +
         " dans le groupe " +
         data.name_group,
     });
