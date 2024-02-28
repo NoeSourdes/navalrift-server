@@ -21,6 +21,13 @@ io.on("connection", (socket) => {
   socket.on("send_msg", (data) => {
     console.log(data, "DATA");
     socket.to(data.id_group).emit("receive_msg", data);
+    socket.to(data.id_group).emit("notification", {
+      message:
+        "Nouveau message reçu de " +
+        data.user +
+        " dans le groupe " +
+        data.name_group,
+    });
   });
 
   socket.on("disconnect", () => {
