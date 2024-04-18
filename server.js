@@ -46,7 +46,7 @@ io.on("connection", (socket) => {
     } else if (!game.player2) {
       game.player2 = socket.id;
       // Emit event to the room that the game can start
-      io.to(id_game).emit("game_can_start", {
+      io.in(id_game).emit("game_can_start", {
         player1: game.player1,
         player2: game.player2,
       });
