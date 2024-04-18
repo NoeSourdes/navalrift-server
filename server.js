@@ -30,6 +30,13 @@ io.on("connection", (socket) => {
     });
   });
 
+  // gestion de la connexion a une partie de jeu
+
+  socket.on("join_game", (id_game) => {
+    socket.join(id_game);
+    console.log(`L'utilisateur ${socket.id} a rejoint la game : ${id_game}`);
+  });
+
   socket.on("disconnect", () => {
     console.log("utilisateur déconnecté", socket.id);
   });
