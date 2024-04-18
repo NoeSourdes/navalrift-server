@@ -56,8 +56,17 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     console.log("utilisateur déconnecté", socket.id);
+    // Reset game state when a player disconnects
+    if (socket.id === game.player1 || socket.id === game.player2) {
+      game = {
+        player1: null,
+        player2: null,
+      };
+    }
   });
 });
 
 const PORT = process.env.PORT || 3001;
-httpServer.listen(PORT, () => {});
+httpServer.listen(PORT, () => {
+  console.log(`Le serveur est en cours d'écoute sur le port ${PORT}`);
+});
