@@ -46,8 +46,14 @@ io.on("connection", (socket) => {
     } else if (!game.player2) {
       game.player2 = socket.id;
       // Emit event to both players that the game can start
-      io.to(game.player1).emit("game_can_start");
-      io.to(game.player2).emit("game_can_start");
+      io.to(game.player1).emit("game_can_start", {
+        player1: game.player1,
+        player2: game.player2,
+      });
+      io.to(game.player2).emit("game_can_start", {
+        player1: game.player1,
+        player2: game.player2,
+      });
     } else {
       console.log("La partie est pleine");
       socket.emit("game_full");
